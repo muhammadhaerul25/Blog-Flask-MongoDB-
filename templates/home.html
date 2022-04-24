@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Group 10's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- css
+    ================================================== -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+    <!-- js
+    ================================================== -->
+    <script defer src="{{ url_for('static', filename='js/modernizr.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/pace.min.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+
+<body id="top">
+
+    <!-- pageheader
+    ================================================== -->
+    <section class="s-pageheader s-pageheader--home">
+
+        <header class="header">
+            <div class="header__content row">
+
+                <div class="header__logo">
+                    <a class="logo" href="#">
+                        <img src="{{ url_for('static', filename='img/blog.png') }}" alt="Group 10's Blog">
+                    </a>
+                </div> <!-- end header__logo -->
+
+                <ul class="header__social">
+                    <li>
+                        <a href="https://web.facebook.com/muhammad.haerul.98284?_rdc=1&_rdr"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/mhp.25/?igshid=YmMyMTA2M2Y="><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/muhammadhaerul25?tab=repositories"><i class="fa fa-github" aria-hidden="true"></i></a>
+                    </li>
+                </ul> <!-- end header__social -->
+
+                <a class="header__search-trigger" href="#"></a>
+
+                <div class="header__search">
+
+                    <form role="search" method="get" class="header__search-form" action="#">
+                        <label>
+                            <span class="hide-content">Search for:</span>
+                            <input type="search" class="search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off">
+                        </label>
+                        <input type="submit" class="search-submit" value="Search">
+                    </form>
+        
+                    <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
+
+                </div>  <!-- end header__search -->
+
+
+                <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+
+                <nav class="header__nav-wrap">
+
+                    <h2 class="header__nav-heading h6">Site Navigation</h2>
+
+                    <ul class="header__nav">
+                        <li class="current"><a href="/home" title="">Home</a></li>
+                        <li class="has-children">
+                            <a href="/category" title="">News Categories</a>
+                            <ul class="sub-menu">
+
+                            {% for c in ctgr %}
+                             <li><a href="{% print('/category/' + c['_id']) %}">{% print(c["_id"]) %}</a></li>
+                            {% endfor %}
+                    
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="/date" title="">News Dates</a>
+                            <ul class="sub-menu">
+
+                            {% for d in dt %}
+                             <li><a href="/date/{{ d['_id'] }}">{% print(d._id) %}</a></li>
+                            {% endfor %}
+
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="/tag" title="">News Tags</a>
+                            <ul class="sub-menu">
+
+                            {% for t in tg %}
+                             <li><a href="{% print('/tag/' + t['_id']) %}">{% print(t["_id"]) %}</a></li>
+                            {% endfor %}
+
+                            </ul>
+                        </li>  
+                        <li><a href="/about" title="">About</a></li>
+                        <li><a href="/contact" title="">Contact</a></li>
+                        <li><a href="/login" title="">Login</a></li>
+                    </ul> <!-- end header__nav -->
+
+                    <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+                </nav> <!-- end header__nav-wrap -->
+
+            </div> <!-- header-content -->
+        </header> <!-- header -->
+
+
+        <div class="pageheader-content row">
+            <div class="col-full">
+                {% for t in trn %}
+                <div class="featured">
+
+                    <div class="featured__column featured__column--big">
+                        <div class="entry" style="background-image:url('static/img/nature.jpg');">
+                            
+                            <div class="entry__content">
+                                <span class="entry__category"><a href="#0">#{% print(t["tag"]) %}1</a></span>
+
+                                <h1><a href="/news/{% print(t['_id']) %}" title="">{% print(t["title"]) %}</a></h1>
+
+                                <div class="entry__info">
+                                    <a href="#0" class="entry__profile-pic">
+                                        <img class="avatar" src="static/img/author.jpg" alt="">
+                                    </a>
+
+                                    <ul class="entry__meta">
+                                        <li>{% print(t["author"]) %}</li>
+                                        <li>{% print(t["date"]) %}</li>
+                                    </ul>
+                                </div>
+                            </div> <!-- end entry__content -->
+                            
+                        </div> <!-- end entry -->
+                    </div> <!-- end featured__big -->
+                    {% endfor %}
+
+
+                    <div class="featured__column featured__column--small">
+
+                        {% for r in rcmnd %}
+                        <div class="entry" style="background-image:url('static/img/nature2.jpg');">
+                            
+                            <div class="entry__content">
+                                <span class="entry__category"><a href="#0">#{% print(r["tag"]) %}</a></span>
+
+                                <h1><a href="/news/{% print(r['_id']) %}" title="">{% print(r["title"]) %}</a></h1>
+
+                                <div class="entry__info">
+                                    <a href="#0" class="entry__profile-pic">
+                                        <img class="avatar" src="static/img/author.jpg" alt="">
+                                    </a>
+
+                                    <ul class="entry__meta">
+                                        <li>{% print(r["author"]) %}</li>
+                                        <li>{% print(r["date"]) %}</li>
+                                    </ul>
+                                </div>
+                            </div> <!-- end entry__content -->
+                          
+                        </div> <!-- end entry -->
+                        {% endfor %}
+
+                    </div> <!-- end featured__small -->
+                </div> <!-- end featured -->
+
+            </div> <!-- end col-full -->
+        </div> <!-- end pageheader-content row -->
+
+    </section> <!-- end s-pageheader -->
+
+
+    <!-- s-content
+    ================================================== -->
+    <section class="s-content">
+
+        <div class="row masonry-wrap">
+            <div class="masonry">
+
+                <div class="grid-sizer"></div>
+
+                {% for n in news %}
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+                        
+                    <div class="entry__thumb">
+                        <a href="" class="entry__thumb-link">
+                            <img src="" 
+                                    srcset="" alt="">
+                        </a>
+                    </div>
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <span class="entry__category"><a href="#0">{% print(n["category"]) %}</a></span>
+                            <h1 class="entry__title"><a href="/news/{% print(n['_id']) %}">{% print(n["title"]) %}</a></h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+                            <p> {% for cnt in n.content.split()[:20] %}
+                                    {{ cnt + " "}}
+                                {% endfor %}
+                                {{ "..." }}
+                            </p>
+                        </div>
+
+                        <div class="entry__date">
+                            <a href="#0">{% print(n["author"]) %} | {% print(n["date"]) %}</a>
+                        </div>
+
+                        <div class="entry__meta">
+                            <span class="entry__meta-links">
+                                <a href="#0">#{% print(n["tag"]) %}</a> 
+                            </span>
+                        </div>
+                    </div>
+
+                </article> <!-- end article -->
+
+                {% endfor %}
+
+            </div> <!-- end masonry -->
+        </div> <!-- end masonry-wrap -->
+
+
+
+        <div class="row">
+            <div class="col-full">
+                <nav class="pgn">
+                    <ul>
+                        <li><a class="pgn__num current" href="{{ prev }}">Prev</a></li>
+                        <li><a class="pgn__num" href="#0">{{n}}/{{t}}</a></li>
+                        <li><a class="pgn__num current" href="{{ next }}">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+    </section> <!-- s-content -->
+
+
+    <!-- s-extra
+    ================================================== -->
+    <section class="s-extra">
+
+        <div class="row top">
+
+            <!-- pop news -->
+            <div class="col-eight md-six tab-full popular">
+                <h3>Popular News</h3>
+
+                <div class="block-1-2 block-m-full popular__posts">
+
+                    {% for p in pop %}
+                    <article class="col-block popular__post">
+                        <a href="#0" class="popular__thumb">
+                            <img src="static/img/news.jpg" alt="...">
+                        </a>
+                        <h5><a href="/news/{% print(p['_id']) %}">{% print(p["title"]) %}</a></h5>
+                        <section class="popular__meta">
+                            <span class="popular__author"><span>Read {% print(p["read"]) %} times</span> 
+                        </section>
+                    </article>
+                    {% endfor %}
+
+                </div> <!-- end popular_posts -->
+            </div> <!-- end popular -->
+            
+
+            <!-- tag -->
+            <div class="col-four md-six tab-full about">
+
+                <div class="row bottom tags-wrap">
+                    <div class="col-full tags">
+                        <h3>Popular Tags</h3>
+
+                        <div class="tagcloud">
+
+                            {% for t2 in tg2 %}
+                            <a href="{% print('/tag/' + t2['_id']) %}">#{% print(t2["_id"]) %}</a>
+                            {% endfor %}
+                        </div> <!-- end tagcloud -->
+                    </div> <!-- end tags -->
+                </div> <!-- end tags-wrap -->
+            </div> <!-- end about -->
+
+        </div> <!-- end row -->
+
+
+        <div class="row top">
+
+            <!-- date -->
+            <div class="col-eight md-six tab-full popular">
+                <div class="block-1-2 block-m-full popular__posts">
+                    <h3>Dates</h3>
+
+                    <div class="tagcloud">
+
+                        {% for t2 in dt2 %}
+                            <a href="/date/{{ t2['_id'] }}">{% print(t2._id) %}</a>
+                        {% endfor %}
+
+                    </div> <!-- end tagcloud -->
+                </div> <!-- end tags -->
+            </div> <!-- end tags-wrap -->
+
+            <!-- category -->
+            <div class="col-four md-six tab-full about">
+                <!-- date -->
+                <div class="row bottom tags-wrap">
+                    <div class="col-full tags">
+                        <h3>Categories</h3>
+
+                        <div class="tagcloud">
+
+                            {% for c2 in ctgr2 %}
+                                <a href="{% print('/category/' + c2['_id']) %}">{% print(c2["_id"]) %}</a>
+                            {% endfor %}
+
+                        </div> <!-- end tagcloud -->
+                    </div> <!-- end tags -->
+                </div> <!-- end tags-wrap -->
+            </div>
+
+        </div> <!-- end row -->
+
+    </section> <!-- end s-extra -->
+
+
+    <!-- s-footer
+    ================================================== -->
+    <footer class="s-footer">
+
+        <div class="s-footer__main">
+            <div class="row">
+                
+                <div class="col-two md-four mob-full s-footer__sitelinks">
+                        
+                    <h4>Links</h4>
+                    <ul class="s-footer__linklist">
+                        <li><a href="#0">Home</a></li>
+                        <li><a href="#0">News</a></li>
+                        <li><a href="#0">About</a></li>
+                        <li><a href="#0">Contact</a></li>
+                        <li><a href="#0">Login</a></li>
+                    </ul>
+
+                </div> <!-- end s-footer__sitelinks -->
+
+                <div class="col-two md-four mob-full s-footer__archives">
+                        
+                    <h4>News</h4>
+                    <ul class="s-footer__linklist">
+                        <li><a href="#0">Categories</a></li>
+                        <li><a href="#0">Dates</a></li>
+                        <li><a href="#0">Tags</a></li>
+                    </ul>
+
+                </div> <!-- end s-footer__archives -->
+
+                <div class="col-two md-four mob-full s-footer__social">
+                        
+                    <h4>Contact</h4>
+                    <ul class="s-footer__linklist">
+                        <li><a href="#0">Phone</a></li>
+                        <li><a href="#0">Email</a></li>
+                        <li><a href="#0">GitHub</a></li>
+                    </ul>
+
+                </div> <!-- end s-footer__social -->
+
+                <div class="col-five md-full end s-footer__subscribe">
+                        
+                    <h4>My Newsletter</h4>
+                    <p>Please subscribe me here!</p>
+
+                    <div class="subscribe-form">
+                        <form id="mc-form" class="group" novalidate="true">
+
+                            <input type="email" value="" name="EMAIL" class="email" id="mc-email" placeholder="Email Address" required="">
+                
+                            <input type="submit" name="subscribe" value="Send">
+                
+                            <label for="mc-email" class="subscribe-message"></label>
+                
+                        </form>
+                    </div>
+
+                </div> <!-- end s-footer__subscribe -->
+
+            </div>
+        </div> <!-- end s-footer__main -->
+
+        <div class="s-footer__bottom">
+            <div class="row">
+                <div class="col-full">
+                    <div class="s-footer__copyright">
+                        <span>© MHp25 2022</span> 
+                        <span>Site Template by <a href="https://colorlib.com/">Colorlib</a> Downloaded from <a href="https://themeslab.org/" target="_blank">Themeslab</a></span>
+                    </div>
+
+                    <div class="go-top">
+                        <a class="smoothscroll" title="Back to Top" href="#top"></a>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end s-footer__bottom -->
+
+    </footer> <!-- end s-footer -->
+
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader">
+            <div class="line-scale">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

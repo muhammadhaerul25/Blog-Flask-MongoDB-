@@ -1,0 +1,59 @@
+{% extends "baseAdmin.html" %}
+
+    {% block title %} User {% endblock %}
+
+    {% block content %}
+    <!-- content
+    ================================================== -->
+
+    <section class="s-content s-content--narrow">
+
+        <div class="row">
+
+            <div class="col-full s-content__main">
+
+                {% if message  %}
+                    <div class="alert alert-secondary" role="alert">
+                        <p style="color: red; text-align: center;"><b>{{ message }}</b></p>
+                    </div>
+                {% endif %}
+
+                <h3><b>Create an User</b></h3>
+
+                <form name="userForm" id="userForm" method="post" action="">
+                    <fieldset>
+
+                        <div class="form-field">
+                            <input name="username" type="text" id="name" class="full-width" placeholder="Username" value="" required>
+                        </div>
+
+                        <div class="form-field">
+                            <input name="email" type="email" id="email" class="full-width" placeholder="Email" value="" required>
+                        </div>
+
+                        <div class="form-field">
+                            <input name="password" type="password" id="password" class="full-width" placeholder="Password" value="" required>
+                        </div>
+
+                        <div class="form-field">
+                            <input name="passwordConfir" type="password" id="passwordConfir" class="full-width" placeholder="Password Confirmation" value="" required>
+                        </div>
+
+
+                        <button type="submit" class="submit btn btn--primary full-width">Create</button>
+
+
+                    </fieldset>
+                </form> <!-- end form -->
+
+
+            </div> <!-- end s-content__main -->
+
+        </div> <!-- end row -->
+
+    </section> <!-- s-content -->
+    {% endblock %}
+
+
+
+  

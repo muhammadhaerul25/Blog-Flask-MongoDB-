@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+<!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>{% block title %} {% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- css
+    ================================================== -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    
+
+    <!-- js
+    ================================================== -->
+    <script defer src="{{ url_for('static', filename='js/modernizr.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/pace.min.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+
+<body id="top">
+
+    <!-- pageheader
+    ================================================== -->
+    <section class="s-pageheader">
+
+        <header class="header">
+            <div class="header__content row">
+
+                <div class="header__logo">
+                    <a class="logo" href="#">
+                        <img src="{{ url_for('static', filename='img/blog.png') }}" alt="Group 10's Blog">
+                    </a>
+                </div> <!-- end header__logo -->
+
+                <ul class="header__social">
+                    <li>
+                        <a href="https://web.facebook.com/muhammad.haerul.98284?_rdc=1&_rdr"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/mhp.25/?igshid=YmMyMTA2M2Y="><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/muhammadhaerul25?tab=repositories"><i class="fa fa-github" aria-hidden="true"></i></a>
+                    </li>
+                </ul> <!-- end header__social -->
+
+                <a class="header__search-trigger" href="#"></a>
+
+                <div class="header__search">
+
+                    <form role="search" method="get" class="header__search-form" action="#">
+                        <label>
+                            <span class="hide-content">Search for:</span>
+                            <input type="search" class="search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off">
+                        </label>
+                        <input type="submit" class="search-submit" value="Search">
+                    </form>
+        
+                    <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
+
+                </div>  <!-- end header__search -->
+
+
+                <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+
+                <nav class="header__nav-wrap">
+
+                    <h2 class="header__nav-heading h6">Site Navigation</h2>
+
+                    <ul class="header__nav">
+                        <li class="current"><a href="/home" title="">Home</a></li>
+                        <li class="has-children">
+                            <a href="/category" title="">News Categories</a>
+                            <ul class="sub-menu">
+
+                            {% for c in ctgr %}
+                             <li><a href="{% print('/category/' + c['_id']) %}">{% print(c["_id"]) %}</a></li>
+                            {% endfor %}
+                    
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="/date" title="">News Dates</a>
+                            <ul class="sub-menu">
+
+                            {% for d in dt %}
+                             <li><a href="/date/{{ d['_id'] }}">{% print(d._id) %}</a></li>
+                            {% endfor %}
+
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="/tag" title="">News Tags</a>
+                            <ul class="sub-menu">
+
+                            {% for t in tg %}
+                             <li><a href="{% print('/tag/' + t['_id']) %}">{% print(t["_id"]) %}</a></li>
+                            {% endfor %}
+
+                            </ul>
+                        </li>  
+                        <li><a href="/about" title="">About</a></li>
+                        <li><a href="/contact" title="">Contact</a></li>
+                        <li><a href="/login" title="">Login</a></li>
+                    </ul> <!-- end header__nav -->
+
+                    <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+                </nav> <!-- end header__nav-wrap -->
+
+            </div> <!-- header-content -->
+        </header> <!-- header -->
+    </section> <!-- end s-pageheader -->
+
+
+
+   {% block content %}
+   <!-- template inserted here -->
+   {% endblock %}
+
+
+    <!-- s-footer
+    ================================================== -->
+    <footer class="s-footer">
+
+        <div class="s-footer__main">
+            <div class="row">
+                
+                <div class="col-two md-four mob-full s-footer__sitelinks">
+                        
+                    <h4>Links</h4>
+                    <ul class="s-footer__linklist">
+                        <li><a href="#0">Home</a></li>
+                        <li><a href="#0">News</a></li>
+                        <li><a href="#0">About</a></li>
+                        <li><a href="#0">Contact</a></li>
+                        <li><a href="#0">Login</a></li>
+                    </ul>
+
+                </div> <!-- end s-footer__sitelinks -->
+
+                <div class="col-two md-four mob-full s-footer__archives">
+                        
+                    <h4>News</h4>
+                    <ul class="s-footer__linklist">
+                        <li><a href="#0">Categories</a></li>
+                        <li><a href="#0">Dates</a></li>
+                        <li><a href="#0">Tags</a></li>
+                    </ul>
+
+                </div> <!-- end s-footer__archives -->
+
+                <div class="col-two md-four mob-full s-footer__social">
+                        
+                    <h4>Contact</h4>
+                    <ul class="s-footer__linklist">
+                        <li><a href="#0">Phone</a></li>
+                        <li><a href="#0">Email</a></li>
+                        <li><a href="#0">GitHub</a></li>
+                    </ul>
+
+                </div> <!-- end s-footer__social -->
+
+                <div class="col-five md-full end s-footer__subscribe">
+                        
+                    <h4>My Newsletter</h4>
+                    <p>Please subscribe me here!</p>
+
+                    <div class="subscribe-form">
+                        <form id="mc-form" class="group" novalidate="true">
+
+                            <input type="email" value="" name="EMAIL" class="email" id="mc-email" placeholder="Email Address" required="">
+                
+                            <input type="submit" name="subscribe" value="Send">
+                
+                            <label for="mc-email" class="subscribe-message"></label>
+                
+                        </form>
+                    </div>
+
+                </div> <!-- end s-footer__subscribe -->
+
+            </div>
+        </div> <!-- end s-footer__main -->
+
+        <div class="s-footer__bottom">
+            <div class="row">
+                <div class="col-full">
+                    <div class="s-footer__copyright">
+                        <span>© MHp25 2022</span> 
+                        <span>Site Template by <a href="https://colorlib.com/">Colorlib</a> Downloaded from <a href="https://themeslab.org/" target="_blank">Themeslab</a></span>
+                    </div>
+
+                    <div class="go-top">
+                        <a class="smoothscroll" title="Back to Top" href="#top"></a>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end s-footer__bottom -->
+
+    </footer> <!-- end s-footer -->
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader">
+            <div class="line-scale">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

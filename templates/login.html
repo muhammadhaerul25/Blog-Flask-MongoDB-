@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+    {% block title %} Login {% endblock %}
+
+    {% block content %}
+    <!-- content
+    ================================================== -->
+    <section class="s-content s-content--narrow">
+
+        <div class="row">
+
+            <div class="col-full s-content__main">
+
+                {% if message  %}
+                    <div class="alert alert-secondary" role="alert">
+                        <p style="color: red; text-align: center;"><b>{{ message }}</b></p>
+                    </div>
+                {% endif %}
+
+                <h3><b>Login</b></h3>
+
+                <form name="cForm" id="cForm" method="post" action="">
+                    <fieldset>
+
+                        <div class="form-field">
+                            <input name="email" type="email" id="cEmail" class="full-width" placeholder="Email" value="" required>
+                        </div>
+
+                        <div class="form-field">
+                            <input name="password" type="password" id="cName" class="full-width" placeholder="Password" value="" required>
+                        </div>
+
+                        <button type="submit" class="submit btn btn--primary full-width">Login</button>
+
+                    </fieldset>
+                </form> <!-- end form -->
+
+
+            </div> <!-- end s-content__main -->
+
+        </div> <!-- end row -->
+
+    </section> <!-- s-content -->
+    {% endblock %}
+
+
+
+  

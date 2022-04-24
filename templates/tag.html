@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+    {% block title %} Tag {% endblock %}
+
+    {% block content %}
+    <!-- content
+    ================================================== -->
+    <section class="s-content">
+
+        <div class="row narrow">
+            <div class="col-full s-content__header" data-aos="fade-up">
+                <h1>Tag: {% print(str) %}</h1>
+            </div>
+        </div>
+        
+        
+        <div class="row masonry-wrap">
+            <div class="masonry">
+
+                <div class="grid-sizer"></div>
+
+                {% for n in news %}
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+                        
+                    <div class="entry__thumb">
+                        <a href="" class="entry__thumb-link">
+                            <img src="" 
+                                    srcset="" alt="">
+                        </a>
+                    </div>
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <span class="entry__category"><a href="#0">{% print(n["category"]) %}</a></span>
+                            <h1 class="entry__title"><a href="/news/{% print(n['_id']) %}">{% print(n["title"]) %}</a></h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+                            <p>
+                                {% for cnt in n.content.split()[:20] %}
+                                    {{ cnt + " "}}
+                                {% endfor %}
+                                {{ "..." }}
+                            </p>
+                        </div>
+
+                        <div class="entry__date">
+                            <a href="#0">{% print(n["author"]) %} | {% print(n["date"]) %}</a>
+                        </div>
+
+                        <div class="entry__meta">
+                            <span class="entry__meta-links">
+                                <a href="#0">#{% print(n["tag"]) %}</a> 
+                            </span>
+                        </div>
+                    </div>
+
+                </article> <!-- end article -->
+
+                {% endfor %}
+
+            </div> <!-- end masonry -->
+        </div> <!-- end masonry-wrap -->
+
+        <div class="row">
+            <div class="col-full">
+                <nav class="pgn">
+                    <ul>
+                        <li><a class="pgn__num current" href="{{ prev }}">Prev</a></li>
+                        <li><a class="pgn__num" href="#0">{{n}}/{{t}}</a></li>
+                        <li><a class="pgn__num current" href="{{ next }}">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+    </section> <!-- end content -->
+    {% endblock %}
+   
+    
+

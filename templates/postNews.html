@@ -1,0 +1,73 @@
+{% extends "baseAdmin.html" %}
+
+    {% block title %} Post News {% endblock %}
+
+    {% block content %}
+    <!-- content
+    ================================================== -->
+
+    <section class="s-content s-content--narrow">
+
+        <div class="row">
+
+            <div class="col-full s-content__main">
+
+                {% if message  %}
+                    <div class="alert alert-secondary" role="alert">
+                        <p style="color: red; text-align: center;"><b>{{ message }}</b></p>
+                    </div>
+                {% endif %}
+
+                <h3><b>Post a News</b></h3>
+
+                <form name="postForm" id="postForm" method="post" action="">
+                    <fieldset>
+
+                        <div class="form-field">
+                            <input name="title" type="text" id="title" class="full-width" placeholder="Title" value="" >
+                        </div>
+
+                        <div class="form-field">
+                            <input name="title_idn" type="text" id="title_idn" class="full-width" placeholder="Title (Indonesian)" value="">
+                        </div>
+
+                        <div class="form-field">
+                            <input name="author" type="text" id="author" class="full-width" placeholder="Author" value="" required>
+                        </div>
+
+                        <div class="form-field">
+                            <input name="category" type="text" id="category" class="full-width" placeholder="Category" value="" required>
+                        </div>
+
+                        <div class="form-field">
+                            <input name="date" type="text" id="date" class="full-width" placeholder="Date: year/month/day" value="" required>
+                        </div>
+
+                        <div class="form-field">
+                            <input name="tag" type="text" id="tag" class="full-width" placeholder="Tag" value="" required>
+                        </div>
+
+                        <div class="form-field">
+                           <textarea id="content" name="content" rows="10" cols="100" placeholder="Content"></textarea>
+                        </div>
+
+                        <div class="form-field">
+                           <textarea id="content_idn" name="content_idn" rows="10" cols="100" placeholder="Content (Indonesian)"></textarea>
+                        </div>
+
+
+                        <button type="submit" class="submit btn btn--primary full-width">Post</button>
+
+
+                    </fieldset>
+                </form> <!-- end form -->
+
+            </div> <!-- end s-content__main -->
+
+        </div> <!-- end row -->
+
+    </section> <!-- s-content -->
+    {% endblock %}
+
+
+
