@@ -49,7 +49,7 @@ def home(index='0'):
     for n in news:
         tNews = tNews + 1
     offset = 0 + int(index)
-    limit = 5
+    limit = 9
     news = db.news
     starting_id = news.find().sort('_id', -1)
     last_id = starting_id[offset]['_id']
@@ -65,7 +65,7 @@ def home(index='0'):
     prev_url = '/home/' + str(prev)
     next_url = '/home/' + str(next)
 
-    return render_template("home.html", news=news, trn=trending, rcmnd=recommended, pop=popular, ctgr=categories,
+    return render_template("index.html", news=news, trn=trending, rcmnd=recommended, pop=popular, ctgr=categories,
                            ctgr2=categories2, dt=dates, dt2=dates2, tg=tags, tg2=tags2,
                            prev=prev_url, next=next_url, n=n, t=tNews)
 
@@ -84,7 +84,7 @@ def category(category, index='0'):
     for n in news:
         tNews = tNews + 1
     offset = 0 + int(index)
-    limit = 5
+    limit = 9
     news = db.news
     starting_id = news.find().sort('_id', -1)
     last_id = starting_id[offset]['_id']
@@ -118,7 +118,7 @@ def date(date, index='0'):
     for n in news:
         tNews = tNews + 1
     offset = 0 + int(index)
-    limit = 5
+    limit = 9
     news = db.news
     starting_id = news.find().sort('_id', -1)
     last_id = starting_id[offset]['_id']
@@ -153,7 +153,7 @@ def tag(tag, index='0'):
     for n in news:
         tNews = tNews + 1
     offset = 0 + int(index)
-    limit = 5
+    limit = 9
     news = db.news
     starting_id = news.find().sort('_id', -1)
     last_id = starting_id[offset]['_id']
